@@ -1,0 +1,27 @@
+spring:
+  application.name: customcloudTask
+org:
+  quartz:
+    job-store-type: jdbc
+    scheduler:
+      instanceId: AUTO
+    threadPool:
+      threadCount: 5
+    plugin:
+      shutdownhook:
+        class: org.quartz.plugins.management.ShutdownHookPlugin
+        cleanShutdown: TRUE
+    jobStore:
+      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+      tablePrefix: my_schema.
+      isClustered: true
+      type: jdbc
+
+      dataSource: myDataSource
+    dataSource:
+      myDataSource:
+        driver: org.postgresql.Driver
+        URL: jdbc:postgresql://localhost/myDataSource
+        user: removed
+        password: removedO
